@@ -1,0 +1,103 @@
+import javax.swing.*;
+import java.awt.*;
+import java.lang.*;
+import java.util.Scanner;
+
+public class Records {
+    private String Name;
+    private int TRN = 0;
+    private long Telephone;
+    private String Address;
+    private static int[] dups = {1234, 5678, 1000, 2000};
+
+
+    public Records(String name, int trn, long telephone, String address) {
+        Name = name;
+        TRN = trn;
+        Telephone = telephone;
+        Address = address;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String newName) {
+        this.Name = newName;
+    }
+
+    public int getTRN() {
+        return TRN;
+    }
+
+    public void setTRN(int NewTRN) {
+        this.TRN = NewTRN;
+    }
+
+    public long getTelephone() {
+        return Telephone;
+    }
+
+    public void setTelephone(long newTele) {
+        this.Telephone = newTele;
+    }
+
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String newAddress) {
+        this.Address = newAddress;
+    }
+
+//    public static void checkDuplicate(int check) {
+//        for(int i:dups){
+//            if (i==check){
+//                System.out.println("Duplicate TRN found");
+//                break;
+//            }
+//            continue;
+//        }
+//    }
+
+
+    @Override
+    public String toString() {
+        return "Records " + '\n' +
+                " Name: " + Name + '\n' +
+                " TRN: " + TRN + '\n' +
+                " Telephone: " + Telephone + '\n' +
+                " Address: " + Address;
+    }
+
+
+
+    public static void main(String[] args) {
+
+//        Scanner  scan2 = new Scanner(System.in);
+//        System.out.println("Enter officer TRN");
+//        int UserTrn= scan2.nextInt();
+//
+//        for(int i:dups){
+//            if (UserTrn == i){
+//                System.out.println("Duplicate TRN found" );
+//                System.out.println("Please Ty Again");
+//                System.exit(0);
+//            }
+//            else{continue;}
+//        }
+//
+//        Scanner  scan1 = new Scanner(System.in);
+//        System.out.println("Enter officer name");
+//        String UserName= scan1.nextLine();
+//        Scanner  scan3= new Scanner(System.in);
+//        System.out.println("Enter officer Telephone  Number");
+//        long UserNum = scan3.nextLong();
+//        Scanner  scan4 = new Scanner(System.in);
+//        System.out.println("Enter officer Address");
+//        String UserAddress= scan4.nextLine();
+//        Records officer1 = new Records(UserName, UserTrn,UserNum, UserAddress);
+          System.out.println("Record Creation Successful")
+//        System.out.println(officer1);
+    }
+}
