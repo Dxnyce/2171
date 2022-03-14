@@ -1,16 +1,11 @@
-import javax.swing.*;
-import java.awt.*;
 import java.lang.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class Records {
     private String Name;
     private int TRN = 0;
     private long Telephone;
     private String Address;
-    private static int[] dups = {1234, 5678, 1000, 2000};
     private static ArrayList<Records> RecordDatabase = new ArrayList<Records>();
 
 
@@ -53,12 +48,12 @@ public class Records {
         this.Address = newAddress;
     }
 
-    public static void checkDuplicate(int check) {
-        for(int i:dups){
-            if (check == i){
-                System.out.println("Duplicate TRN found" );
-                System.out.println("Please Ty Again");
-                System.exit(0);
+    public static void TRNlist(int check){
+        for (int i = 0; i < RecordDatabase.size(); i++) {
+            if(RecordDatabase.get(i).getTRN() == check){
+            System.out.println("Dupliate TRN found");
+            System.out.println("Please Ty Again");
+            System.exit(0);
             }
             else{continue;}
         }
@@ -89,14 +84,16 @@ public class Records {
         Scanner  scan2 = new Scanner(System.in);
         System.out.println("Enter officer TRN");
         int UserTrn= scan2.nextInt();
-        checkDuplicate(UserTrn);
+        TRNlist(UserTrn);
         Scanner  scan1 = new Scanner(System.in);
+        Scanner  scan3= new Scanner(System.in);
+        Scanner  scan4 = new Scanner(System.in);
         System.out.println("Enter officer name");
         String UserName= scan1.nextLine();
-        Scanner  scan3= new Scanner(System.in);
+
         System.out.println("Enter officer Telephone  Number");
         long UserNum = scan3.nextLong();
-        Scanner  scan4 = new Scanner(System.in);
+
         System.out.println("Enter officer Address");
         String UserAddress= scan4.nextLine();
         Records officer1 = new Records(UserName, UserTrn,UserNum, UserAddress);
