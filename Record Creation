@@ -62,7 +62,14 @@ public class Records {
     public static void addRecord(Records newRecord){
         RecordDatabase.add(newRecord);
     }
-
+    public static void viewRecord(String Name, int TRN){
+        for (int i = 0; i < RecordDatabase.size(); i++) {
+            if(RecordDatabase.get(i).getName() == Name && RecordDatabase.get(i).getTRN()==TRN){
+                System.out.println(RecordDatabase.get(i));
+            }
+            else{continue;}
+        }
+    }
     @Override
     public String toString() {
         return "Records " + '\n' +
@@ -99,6 +106,6 @@ public class Records {
         Records officer1 = new Records(UserName, UserTrn,UserNum, UserAddress);
         System.out.println("Record Creation successful;");
         addRecord(officer1);
-        System.out.println(RecordDatabase);
+ //     System.out.println(RecordDatabase);
     }
 }
