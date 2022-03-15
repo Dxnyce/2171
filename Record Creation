@@ -1,23 +1,23 @@
-package Guardsman;
+package OfficerManagement;
 
 import java.lang.*;
 import java.util.*;
 
 public class Records {
-    private String Name;
-    private int TRN = 0;
-    private long Telephone;
-    private String Address;
-    private static ArrayList<Records> RecordDatabase = new ArrayList<Records>();
+    public String Name;
+    public int TRN = 0;
+    public long Telephone;
+    public String Address;
+    public static ArrayList<Records> RecordDatabase = new ArrayList<Records>();
 
-
-    public Records(String name, int trn, long telephone, String address) {
+//Constructor
+    public Records( int trn,String name,  String address, long telephone) {
         Name = name;
         TRN = trn;
         Telephone = telephone;
         Address = address;
     }
-
+//Getters and Setter
     public String getName() {
         return Name;
     }
@@ -50,30 +50,23 @@ public class Records {
         this.Address = newAddress;
     }
 
-//    public static void checkDuplicate(int check) {
-//        for(int i:dups){
-//            if (check == i){
-//                System.out.println("Duplicate TRN found" );
-//                System.out.println("Please Ty Again");
-//                System.exit(0);
-//            }
-//            else{continue;}
-//        }
-//    }
+//Checking if a duplicate TRN already exists within the system
     public static void checkDuplicate(int check){
         for (int i = 0; i < RecordDatabase.size(); i++) {
             if(RecordDatabase.get(i).getTRN() == check){
-            System.out.println("Dupliate TRN found");
-            System.out.println("Please Ty Again");
-            System.exit(0);
+                System.out.println("Duplicate TRN found");
+                System.out.println("Please Ty Again");
+                System.exit(0);
             }
             else{continue;}
         }
     }
-
+// Adds a record to the Database
     public static void addRecord(Records newRecord){
         RecordDatabase.add(newRecord);
     }
+
+// View the Record
     public static void viewRecord(String Name, int TRN){
         for (int i = 0; i < RecordDatabase.size(); i++) {
             if(RecordDatabase.get(i).getName() == Name && RecordDatabase.get(i).getTRN()==TRN){
@@ -82,7 +75,7 @@ public class Records {
             else{continue;}
         }
     }
-
+// Override for the toSTring method
     @Override
     public String toString() {
         return "Guardsman.Records " + '\n' +
@@ -93,15 +86,16 @@ public class Records {
     }
 
 
-
     public static void main(String[] args) {
-        Records off1= new Records("vladimir", 6969, 8990998, "Russia");
-        Records off2= new Records("Zelensky", 1000, 989898, "Ukraine");
-        Records off3= new Records("Biden", 4600, 76575,"Usa");
+        //Adding records to the list
+        Records off1= new Records( 6969, "vladimir","Russia",8990998);
+        Records off2= new Records(1000, "Zelensky", "Ukraine",87698976 );
+        Records off3= new Records(4600, "Biden", "USA",76575);
         addRecord(off1);
         addRecord(off2);
         addRecord(off3);
 
+        //Accepting User Input to create a Record
         Scanner  scan2 = new Scanner(System.in);
         System.out.println("Enter officer TRN");
         int UserTrn= scan2.nextInt();
@@ -111,15 +105,20 @@ public class Records {
         Scanner  scan4 = new Scanner(System.in);
         System.out.println("Enter officer name");
         String UserName= scan1.nextLine();
-
+        System.out.println("Enter officer Address");
+        String UserAddress= scan4.nextLine();
         System.out.println("Enter officer Telephone  Number");
         long UserNum = scan3.nextLong();
 
-        System.out.println("Enter officer Address");
-        String UserAddress= scan4.nextLine();
-        Records officer1 = new Records(UserName, UserTrn,UserNum, UserAddress);
-        System.out.println("Record Creation successful;");
+        //Using user input to cretae and add record to the Database
+        Records officer1 = new Records( UserTrn,UserName,UserAddress,UserNum);
         addRecord(officer1);
+        System.out.println("Record Creation successful;");
+
+        //Displaying that the Record above is in the Dataabse
         System.out.println(RecordDatabase);
-    }
+
+        //Allow for a user to search for a Ofiicer using his/her TRN and Name
+                viewRecord("vladimir", 6969);
+      }
 }
