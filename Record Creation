@@ -1,3 +1,5 @@
+package Guardsman;
+
 import java.lang.*;
 import java.util.*;
 
@@ -48,7 +50,17 @@ public class Records {
         this.Address = newAddress;
     }
 
-    public static void TRNlist(int check){
+//    public static void checkDuplicate(int check) {
+//        for(int i:dups){
+//            if (check == i){
+//                System.out.println("Duplicate TRN found" );
+//                System.out.println("Please Ty Again");
+//                System.exit(0);
+//            }
+//            else{continue;}
+//        }
+//    }
+    public static void checkDuplicate(int check){
         for (int i = 0; i < RecordDatabase.size(); i++) {
             if(RecordDatabase.get(i).getTRN() == check){
             System.out.println("Dupliate TRN found");
@@ -70,9 +82,10 @@ public class Records {
             else{continue;}
         }
     }
+
     @Override
     public String toString() {
-        return "Records " + '\n' +
+        return "Guardsman.Records " + '\n' +
                 " Name: " + Name + '\n' +
                 " TRN: " + TRN + '\n' +
                 " Telephone: " + Telephone + '\n' +
@@ -88,10 +101,11 @@ public class Records {
         addRecord(off1);
         addRecord(off2);
         addRecord(off3);
+
         Scanner  scan2 = new Scanner(System.in);
         System.out.println("Enter officer TRN");
         int UserTrn= scan2.nextInt();
-        TRNlist(UserTrn);
+        checkDuplicate(UserTrn);
         Scanner  scan1 = new Scanner(System.in);
         Scanner  scan3= new Scanner(System.in);
         Scanner  scan4 = new Scanner(System.in);
@@ -106,6 +120,6 @@ public class Records {
         Records officer1 = new Records(UserName, UserTrn,UserNum, UserAddress);
         System.out.println("Record Creation successful;");
         addRecord(officer1);
- //     System.out.println(RecordDatabase);
+        System.out.println(RecordDatabase);
     }
 }
