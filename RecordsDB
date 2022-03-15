@@ -1,23 +1,32 @@
-mport java.rmi.ConnectIOException;
+package DatabaseController;
+import OfficerManagement.Records;
+
+import java.util.*;
 import java.sql.*;
+import java.lang.String;
 
 public class RecordsDB {
+
     public static void main(String[] args){
-        try{
-        Connection connection = DriverManager.getConnection("jdbc:mysql: //localhost:3306/recordsdb", "root", "guardsmanaviation");
-        Statement statement= connection.createStatement();
-        ResultSet resultSet= statement.executeQuery("select * from records");
-        while (resultSet.next()){
-            System.out.println(resultSet.getString("name"));
-            System.out.println(resultSet.getString("TRN"));
-            System.out.println(resultSet.getString("Address"));
-            System.out.println(resultSet.getString("Telephone"));
-        }
-        }
+        try {
+            //Connecting to the Database
+            Connection connection = DriverManager.getConnection("jdbc:mysql: //localhost:3306/recordsDB", "root", "guardsmanaviation");
+            Statement statement = connection.createStatement();
 
-        catch (Exception e){
-            e.printStackTrace();
-        }
+            //Inserting a new officer into the database
+            String insert = ("INSERT INTO records(TRN, Name, Address, Telephone) VALUES (9000, 'Condolezza Rice','Green Bay', 876875465 ) ");
+            statement.executeUpdate(insert);
 
+            // Displaying all the Records to show that the new Record was added to the database
+            ResultSet resultSet = statement.executeQuery("select * from records");
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("name"));
+                System.out.println(resultSet.getString("TRN"));
+                System.out.println(resultSet.getString("Address"));
+                System.out.println(resultSet.getString("Telephone"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
