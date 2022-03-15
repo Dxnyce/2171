@@ -1,0 +1,23 @@
+mport java.rmi.ConnectIOException;
+import java.sql.*;
+
+public class RecordsDB {
+    public static void main(String[] args){
+        try{
+        Connection connection = DriverManager.getConnection("jdbc:mysql: //localhost:3306/recordsdb", "root", "guardsmanaviation");
+        Statement statement= connection.createStatement();
+        ResultSet resultSet= statement.executeQuery("select * from records");
+        while (resultSet.next()){
+            System.out.println(resultSet.getString("name"));
+            System.out.println(resultSet.getString("TRN"));
+            System.out.println(resultSet.getString("Address"));
+            System.out.println(resultSet.getString("Telephone"));
+        }
+        }
+
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+}
